@@ -49,7 +49,7 @@ fun MyApp() {
     val items = listOf(
         ScreenManager.Home,
         ScreenManager.Cadastro,
-        ScreenManager.About
+        ScreenManager.Find
     )
     Scaffold(
         bottomBar = {
@@ -74,7 +74,7 @@ fun MyApp() {
     ) { innerPadding ->
         NavHost(navController, startDestination = ScreenManager.Home.route, Modifier.padding(innerPadding)) {
             composable(ScreenManager.Home.route) { HomeCompose() }
-            composable(ScreenManager.About.route) { AboutCompose() }
+            composable(ScreenManager.Find.route) { FindCompose() }
             composable(ScreenManager.Cadastro.route) { CadastroCompose() }
         }
     }
@@ -126,7 +126,7 @@ fun ContatoView(contato: Contato) {
 
 
 @Composable
-fun AboutCompose() {
+fun FindCompose() {
     val ctx = LocalContext.current
     val app = ctx.applicationContext as Application
     val model:
