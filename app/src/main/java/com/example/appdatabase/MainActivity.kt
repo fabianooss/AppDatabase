@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -52,6 +54,9 @@ fun MyApp() {
         ScreenManager.Find
     )
     Scaffold(
+        floatingActionButton = {
+          ActionNew()
+        },
         bottomBar = {
             BottomNavigation {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -79,6 +84,16 @@ fun MyApp() {
         }
     }
 
+}
+
+@Composable
+fun ActionNew() {
+    val ctx = LocalContext.current
+    FloatingActionButton(onClick = {
+        Toast.makeText(ctx, "New", Toast.LENGTH_SHORT).show()
+    }) {
+        Icon(imageVector = Icons.Default.Add, contentDescription = "")
+    }
 }
 
 @Composable
@@ -174,6 +189,17 @@ fun CadastroCompose() {
                 Text(text = "E-mail")
             }
         )
+        Row() {
+            RadioButton(
+                selected = model.genero == Genero.Masculino,
+                onClick = { model.genero = Genero.Masculino }
+            )
+            Text(text = "Masculino")
+            RadioButton(selected = model.genero == Genero.Feminino,
+                onClick = { model.genero = Genero.Feminino})
+            Text(text = "Feminino")
+        }
+
         OutlinedTextField(
             value = model.idade?.toString(),
             onValueChange = {
